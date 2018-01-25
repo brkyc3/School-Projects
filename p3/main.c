@@ -53,29 +53,6 @@ int bosmu(Node *head){
 return head==NULL ? 1 :0;
 }
 
-void print(Node* iter){
-    while(iter!=NULL){
-            switch(iter->data){
-        case -1:
-            printf("\n\Vn");
-            break;
-        case -2:
-
-            printf("\n<\n");
-            break;
-
-        case 1:
-            printf("\nA\n");
-            break;
-        case 2:
-            printf("\n>\n");
-            break;
-
-            }
-
-        iter=iter->next;
-    }
-}
 typedef struct m{
     int yol;
     
