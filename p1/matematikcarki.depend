@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1507542074 source:c:\users\brkyz\desktop\prolab1\matematikcarki\main.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<time.h>
+
