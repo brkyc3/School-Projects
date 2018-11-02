@@ -47,7 +47,8 @@ public class Kullanici {
 		}
 		
 	}
-	public void insertToDb() {
+	public boolean insertToDb() {
+		//
 		try {
 			Class.forName(JDBC_DRIVER);
 
@@ -57,10 +58,11 @@ public class Kullanici {
 			
 			String sql = "INSERT INTO bxusers ("+userId+", "+location+", "+age+","+password+","+userName+")";
 			stmt.execute(sql);
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		return false;
 	}
 public Kullanici(int userId, String location, int age, String password, String userName) {
 		

@@ -147,15 +147,22 @@ public class Main extends Application {
 
 			Statement stmt = conn.createStatement();
 
-			String sql = "SELECT count(UserId) from bxusers where UserName = "+userName +" and sifre = "+sifre;
+			String sql = "SELECT count(UserId) as cnt,b.UserName,b.sifre from bxusers as b where b.UserName = \""+userName +"\" and b.sifre = \""+sifre+"\"";
 			ResultSet st = stmt.executeQuery(sql);
 			st.next();
-			return st.getInt(1) == 1;
+			return st.getInt("cnt") == 1;
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		boolean kullaniciVarMi = true; 
+		boolean kullaniciVarMi = false; 
+		return kullaniciVarMi;
+	}
+
+	public static boolean Kayit(int userId, String location, int age, String password, String userName) {
+		Kullanici k= new Kullanici(userId,location,age,password,userName);
+		
+		boolean kullaniciVarMi = k.insertToDb(); //false donerse eklerken hata
 		return kullaniciVarMi;
 	}
 	
