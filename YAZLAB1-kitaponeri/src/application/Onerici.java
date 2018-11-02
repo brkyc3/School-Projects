@@ -15,10 +15,7 @@ import java.util.List;
 import java.util.Map.Entry;
 
 
-//ALTER TABLE bxbookratings ADD FOREIGN KEY (ISBN) REFERENCES bxbooks(ISBN);
-//DELETE FROM bxbookratings WHERE ISBN NOT IN (SELECT BB.ISBN FROM bxbooks AS BB)
-//CREATE TABLE bxbookratings ( UserID int(11) NOT NULL default '0', ISBN varchar(13)CHARACTER SET latin1 COLLATE latin1_bin NOT NULL default '', BookRating int(11) NOT NULL default '0', INDEX(ISBN), PRIMARY KEY (UserID,ISBN), FOREIGN KEY (UserID) REFERENCES bxusers(UserID), FOREIGN KEY (ISBN) REFERENCES bxbooks(ISBN) )
-//ALTER TABLE bxbookratings ADD KEY ix1(ISBN, BookRating ); avg ve count lu queryleri hýzlandýrmak için
+
 public class Onerici {
 	private long userId;
 	private Connection conn = null;
@@ -99,7 +96,7 @@ public class Onerici {
 
 
 
-	public HashSet<String> kitapOner(int adet) {
+	public HashSet<Kitap> kitapOner(int adet) {
 		
 		List<Entry<Long, Double>> sub = benzerler;
 		
@@ -109,7 +106,7 @@ public class Onerici {
 
 		System.out.println("benzer "+benzerler.size());
 		System.out.println("sub "+sub.size());
-		HashSet<String> kitaplar = new HashSet<String>();
+		HashSet<Kitap> kitaplar = new HashSet<Kitap>();
 		int count =0;
 		
 		HashSet<String> kullaniciOkuduklari = new HashSet<String>();
@@ -129,15 +126,26 @@ public class Onerici {
 				
 
 				while (rs.next()) {
-					if (!kullaniciOkuduklari.contains(rs.getString("ISBN")) && rs.getInt("BookRating")>7 ) {
-						sql = "SELECT BookTitle FROM bxbooks where ISBN = \"" + rs.getString("ISBN") + "\"";
+					if ((!kullaniciOkuduklari.contains(rs.getString("ISBN"))) && rs.getInt("BookRating")>7 ) {
+						sql = "SELECT * FROM bxbooks where ISBN = \"" + rs.getString("ISBN") + "\"";
 					
 						Statement stmt2 = conn.createStatement();
 						ResultSet rs1 = stmt2.executeQuery(sql);
 						while (rs1.next()) {
 							if(count<adet) {
-							kitaplar.add(rs1.getString("BookTitle"));
+							kitaplar.add(new Kitap(
+									rs1.getString("ISBN"),
+									rs1.getString("BookTitle"),
+									rs1.getString("BookAuthor"),
+									rs1.getInt("YearOfPublication"),
+									rs1.getString("Publisher"),
+									rs1.getString("ImageURLS"),
+									rs1.getString("ImageURLM"),
+									rs1.getString("ImageURLL")
+								    )
+									);
 							count++;
+							
 							}
 							else
 								return kitaplar;
