@@ -18,6 +18,7 @@ import java.util.Map.Entry;
 //ALTER TABLE bxbookratings ADD FOREIGN KEY (ISBN) REFERENCES bxbooks(ISBN);
 //DELETE FROM bxbookratings WHERE ISBN NOT IN (SELECT BB.ISBN FROM bxbooks AS BB)
 //CREATE TABLE bxbookratings ( UserID int(11) NOT NULL default '0', ISBN varchar(13)CHARACTER SET latin1 COLLATE latin1_bin NOT NULL default '', BookRating int(11) NOT NULL default '0', INDEX(ISBN), PRIMARY KEY (UserID,ISBN), FOREIGN KEY (UserID) REFERENCES bxusers(UserID), FOREIGN KEY (ISBN) REFERENCES bxbooks(ISBN) )
+//ALTER TABLE bxbookratings ADD KEY ix1(ISBN, BookRating ); avg ve count lu queryleri hýzlandýrmak için
 public class Onerici {
 	private long userId;
 	private Connection conn = null;

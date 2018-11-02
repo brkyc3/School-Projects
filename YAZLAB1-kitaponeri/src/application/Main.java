@@ -26,7 +26,11 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
+		KitapGetir kitapGetir = new KitapGetir();
+		kitapGetir.yuksekOrtalama();
+		kitapGetir.cokOylanan();
 		launch(args);
+		
 	}
 	
 	
@@ -45,7 +49,7 @@ public class Main extends Application {
 				Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
 				Statement stmt = conn.createStatement();
-				int id=0;
+				
 			
 				String sql= "UPDATE bxusers\r\n" + 
 						"SET userName =  UserId";
