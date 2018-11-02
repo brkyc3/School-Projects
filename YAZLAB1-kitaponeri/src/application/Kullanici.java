@@ -22,7 +22,7 @@ public class Kullanici {
 
 			 stmt = conn.createStatement();
 			
-			String sql = "insert into  bxbookratings values("+userId+" , " +isbn +" , " +rating;
+			String sql = "insert into  bxbookratings values("+userId+" , \"" +isbn +"\" , " +rating+")";
 			stmt.execute(sql);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -39,7 +39,7 @@ public class Kullanici {
 			String sql = "select count(*) as cnt  from bxbookratings where userId = "+userId;
 			ResultSet rs =stmt.executeQuery(sql);
 			rs.next();
-			
+			System.out.println(" oy sayisi " + rs.getInt("cnt"));
 			return !(rs.getInt("cnt")<10) ;
 		} catch (Exception e) {
 			e.printStackTrace();

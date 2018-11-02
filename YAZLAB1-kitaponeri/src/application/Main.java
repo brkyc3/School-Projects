@@ -30,11 +30,12 @@ public class Main extends Application {
 	private static void test(){
 	Kullanici kk = new Kullanici(1231251252, "sakarya", 23, "qwer123", "burak123");
 		kk.insertToDb();
+		
 		ArrayList<Kullanici> kullanicilar =KullaniciDB.sayfaIleGetir(1);// 1. sayfa 0 ile 50 arasýndaki kullanilari getir
 		for(Kullanici k :kullanicilar){
 		System.out.println("kullanici " +k.getUserName());
 		}
-		KullaniciDB.deleteUser(1231251252);
+		
 
 
 		Kitap kt = new Kitap("!!!!!!!","incog","dav" ,1995,"asd","burak","url","urls");
@@ -44,7 +45,10 @@ public class Main extends Application {
 		System.out.println(k.getBookTitle());
 		}
 		
+		kk.oyVer("!!!!!!!", 8);
+	
 		
+		System.out.println("onay " + kk.yeterinceOyVerdimi());
 		
 		ArrayList<Kitap> yuksekOrt =KitapDB.yuksekOrtalama();
 		System.out.println("Yuksek ortalamali kitaplar");
@@ -81,7 +85,7 @@ public class Main extends Application {
 		
 		
 		KitapDB.deleteBook("!!!!!!!");
-		
+		KullaniciDB.deleteUser(1231251252);
 		
 		
 		
