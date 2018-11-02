@@ -2,7 +2,6 @@ package application.view;
 
 import javafx.scene.control.TextField;
 
-import application.Kullanici;
 import application.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -15,7 +14,6 @@ public class LoginScreenController {
 	@FXML
 	private TextField sifreText;
 	
-	private Kullanici kullanici;
 	private Main main;
 	
 	public LoginScreenController() {		

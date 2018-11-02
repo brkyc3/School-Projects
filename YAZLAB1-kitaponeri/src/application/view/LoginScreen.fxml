@@ -5,7 +5,7 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-
+ 
 <AnchorPane prefHeight="500.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.LoginScreenController">
    <children>
       <Label layoutX="170.0" layoutY="177.0" text="ID" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" />

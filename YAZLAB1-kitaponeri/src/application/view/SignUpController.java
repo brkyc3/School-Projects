@@ -6,7 +6,7 @@ import application.Main;
 import javafx.fxml.FXML;
 
 public class SignUpController {
-
+ 
 	@FXML
 	private TextField IDText;
 	
