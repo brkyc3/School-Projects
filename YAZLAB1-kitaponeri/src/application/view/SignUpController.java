@@ -21,6 +21,8 @@ public class SignUpController {
 	
 	@FXML
 	private TextField sifreText;
+	@FXML
+	private TextField kullaniciAdiText;
 	
 	private Main main;
 	
@@ -38,9 +40,9 @@ public class SignUpController {
 			if(login) {
 				System.out.println("girdi");
 				//load main scene
-				Kullanici kk = new Kullanici(300000,
+				Kullanici kk = new Kullanici(Integer.parseInt(IDText.getText()),
 						konumText.getText(), Integer.parseInt(yasText.getText()), 
-						sifreText.getText(), IDText.getText());
+						sifreText.getText(), kullaniciAdiText.getText());
 				
 				if(kk.insertToDb()) 
 				{
@@ -79,15 +81,19 @@ public class SignUpController {
         if (IDText.getText() == null || IDText.getText().length() == 0) {
             errorMessage += "No valid ID!\n"; 
         }
-        if (sifreText.getText() == null || sifreText.getText().length() == 0) {
-            errorMessage += "No valid pass!\n"; 
+        if (konumText.getText() == null || konumText.getText().length() == 0) {
+            errorMessage += "No valid konum!\n"; 
         }
-        if (sifreText.getText() == null || sifreText.getText().length() == 0) {
-            errorMessage += "No valid pass!\n"; 
+        if (yasText.getText() == null || yasText.getText().length() == 0) {
+            errorMessage += "No valid yas!\n"; 
         }
         if (sifreText.getText() == null || sifreText.getText().length() == 0 )
         {
             errorMessage += "No valid pass!\n"; 
+        }
+        if (kullaniciAdiText.getText() == null || kullaniciAdiText.getText().length() == 0 )
+        {
+            errorMessage += "No valid kullanici adi!\n"; 
         }
         
 

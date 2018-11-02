@@ -1,6 +1,7 @@
 package application;
 
 	
+import java.io.File;
 import java.io.IOException;
 
 import java.sql.Connection;
@@ -13,6 +14,7 @@ import application.view.LoginScreenController;
 import application.view.MainPageController;
 import application.view.SignUpController;
 import javafx.application.Application;
+import javafx.application.HostServices;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -89,8 +91,7 @@ public class Main extends Application {
 		KullaniciDB.deleteUser(1231251252);
 		
 		
-		
-		
+
 		
 		
 		
@@ -99,7 +100,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 	
-	
+		
 	
 	
 	

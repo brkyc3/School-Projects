@@ -2,13 +2,43 @@ package application.view;
 
 import javafx.scene.control.TextField;
 
+import com.qoppa.pdf.PDFException;
+import com.qoppa.pdfViewerFX.PDFViewer;
+
 import application.Main;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.BorderPane;
 
 public class LoginScreenController {
-
+/*
+ * 
+ * 
+ * 
+ * pdf okumaya yarýyo jar indirdim projeye ekledimjPDFViewerFX.jar nereye koyulacagini tam kesiremedim
+ * 	PDFViewer m_PDFViewer = new PDFViewer();
+		try {
+			m_PDFViewer.loadPDF("C:\\Users\\asus\\Desktop\\asd.pdf");
+		} catch (PDFException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		BorderPane borderPane = new BorderPane(m_PDFViewer);
+		Scene scene = new Scene(borderPane);
+		primaryStage.setTitle("JavaFX PDFViewer - Qoppa Software");
+		primaryStage.setScene(scene);
+		primaryStage.centerOnScreen();
+		primaryStage.show();
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
 	@FXML
 	private TextField IDText;
 	@FXML
