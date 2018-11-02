@@ -29,8 +29,7 @@ public class Onerici {
 	
 	public Onerici(long userId) {
 		benzerler = new ArrayList<>();
-		System.out.println("const 1");
-		// TODO Auto-generated constructor stub
+
 		this.userId = userId;
 		try {
 			Class.forName(JDBC_DRIVER);
@@ -41,7 +40,7 @@ public class Onerici {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("const 2");
+		
 	}
 
 
@@ -57,7 +56,6 @@ public class Onerici {
 				user.put(rs.getString("ISBN"), rs.getInt("BookRating"));
 				
 			}
-			System.out.println("!!" +user.size());
 			sql = "SELECT * FROM bxbookratings as b1 ,bxbookratings as b2 WHERE b1.UserID <> \""+userId+"\" and b2.UserID =\""+userId+"\" and b1.ISBN =b2.ISBN";
 			rs = stmt.executeQuery(sql);
 		
@@ -99,13 +97,7 @@ public class Onerici {
 	public HashSet<Kitap> kitapOner(int adet) {
 		
 		List<Entry<Long, Double>> sub = benzerler;
-		
-		for(Entry<Long, Double> p : sub) {
-			System.out.println(p.getKey() +" " +p.getValue());
-		}
 
-		System.out.println("benzer "+benzerler.size());
-		System.out.println("sub "+sub.size());
 		HashSet<Kitap> kitaplar = new HashSet<Kitap>();
 		int count =0;
 		
@@ -121,7 +113,7 @@ public class Onerici {
 			for (Entry<Long, Double>  p : sub) {
 				
 				sql = "SELECT * FROM bxbookratings where UserId = \"" + p.getKey()+"\"";
-				System.out.println("id "+p.getKey() );
+
 				ResultSet rs = stmt.executeQuery(sql);
 				
 

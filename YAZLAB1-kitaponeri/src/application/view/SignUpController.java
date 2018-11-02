@@ -36,8 +36,9 @@ public class SignUpController {
 		if(isInputValid()) {
 			boolean login = Main.Giris(IDText.getText(), sifreText.getText());		
 			if(login) {
+				System.out.println("girdi");
 				//load main scene
-				Kullanici kk = new Kullanici(1231251252,
+				Kullanici kk = new Kullanici(300000,
 						konumText.getText(), Integer.parseInt(yasText.getText()), 
 						sifreText.getText(), IDText.getText());
 				

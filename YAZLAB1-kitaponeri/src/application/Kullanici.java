@@ -58,11 +58,14 @@ public class Kullanici {
 			
 			String sql = "INSERT INTO bxusers values ("+userId+" , \""+location+"\" , \""+age+"\", \""+password+"\", \""+userName+"\")";
 			stmt.execute(sql);
+			
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
+			
+			return false;
 		}
-		return false;
+		
 	}
 public Kullanici(int userId, String location, int age, String password, String userName) {
 		

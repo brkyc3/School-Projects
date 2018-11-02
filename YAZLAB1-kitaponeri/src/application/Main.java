@@ -41,7 +41,7 @@ public class Main extends Application {
 
 		Kitap kt = new Kitap("!!!!!!!","incog","dav" ,1995,"asd","burak","url","urls");
 		kt.insertToDB();
-		ArrayList<Kitap> kitaplar = KitapDB.sayfaIleGetir(2);// 1. sayfa 50 ile 100 arasýndaki kullanilari getir
+		ArrayList<Kitap> kitaplar = KitapDB.sayfaIleGetir(2);// 2. sayfa 50 ile 100 arasýndaki kullanilari getir
 		for(Kitap k :kitaplar){
 		System.out.println(k.getBookTitle());
 		}
@@ -209,12 +209,12 @@ public class Main extends Application {
 			String sql = "SELECT count(UserId) as cnt,b.UserName,b.sifre from bxusers as b where b.UserName = \""+userName +"\" and b.sifre = \""+sifre+"\"";
 			ResultSet st = stmt.executeQuery(sql);
 			st.next();
-			return st.getInt("cnt") == 1;
+			return st.getInt("cnt") != 1;
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		boolean kullaniciVarMi = false; 
+		boolean kullaniciVarMi = true; 
 		return kullaniciVarMi;
 	}
 
