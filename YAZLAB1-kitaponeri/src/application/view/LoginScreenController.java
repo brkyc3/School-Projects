@@ -40,9 +40,11 @@ public class LoginScreenController {
 		}
 	}
 	
-	
-	
-	
+	@FXML
+	private void handleSignUp() {
+		main.showSignUpScreen();
+	}
+
 	
 	private boolean isInputValid() {
         String errorMessage = "";

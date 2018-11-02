@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import application.view.LoginScreenController;
 import application.view.MainPageController;
+import application.view.SignUpController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -139,6 +140,24 @@ public class Main extends Application {
             rootLayout.setCenter(loginScreen);          
             // Give the controller access to the main app.
             LoginScreenController controller = loader.getController();
+            controller.setMain(this);
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    
+    }
+    
+    public void showSignUpScreen() {
+    	try {		
+            // Load person overview.
+            FXMLLoader loader = new FXMLLoader();           
+            loader.setLocation(Main.class.getResource("view/SignUp.fxml"));           
+            AnchorPane signUp = (AnchorPane) loader.load();
+            // Set person overview into the center of root layout.
+            rootLayout.setCenter(signUp);          
+            // Give the controller access to the main app.
+            SignUpController controller = loader.getController();
             controller.setMain(this);
             
         } catch (IOException e) {
