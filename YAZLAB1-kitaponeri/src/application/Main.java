@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -139,7 +140,21 @@ public class Main extends Application {
 
 	
 	public static boolean Giris(String userName, String sifre) {
-		//kullanici var mi kontrol et
+		try {
+			Class.forName(JDBC_DRIVER);
+
+			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+			Statement stmt = conn.createStatement();
+
+			String sql = "SELECT count(UserId) from bxusers where UserName = "+userName +" and sifre = "+sifre;
+			ResultSet st = stmt.executeQuery(sql);
+			st.next();
+			return st.getInt(1) == 1;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		boolean kullaniciVarMi = true; 
 		return kullaniciVarMi;
 	}
