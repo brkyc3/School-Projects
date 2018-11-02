@@ -48,9 +48,11 @@ public class KullaniciDB {
 			 Connection conn  = DriverManager.getConnection(DB_URL, USER, PASS);
 
 			 Statement stmt = conn.createStatement();
-			
+			int start =278858+sayfadakiKullaniciAdedi*(ninciSayfa-1);
+			int end = 278858+sayfadakiKullaniciAdedi*(ninciSayfa);
+
 			 String sql = "SELECT * FROM bxusers "
-						+ "LIMIT "+sayfadakiKullaniciAdedi*(ninciSayfa-1) +" , "+sayfadakiKullaniciAdedi*(ninciSayfa);
+						+ "LIMIT "+start +" , "+end;
 			ResultSet rs =stmt.executeQuery(sql);
 			while(rs.next()) {
 				kullanicilar.add(

@@ -27,10 +27,78 @@ public class Main extends Application {
 	
 	private Stage primaryStage;
 	private BorderPane rootLayout;
+	private static void test(){
+	Kullanici kk = new Kullanici(1231251252, "sakarya", 23, "qwer123", "burak123");
+		kk.insertToDb();
+		ArrayList<Kullanici> kullanicilar =KullaniciDB.sayfaIleGetir(1);// 1. sayfa 0 ile 50 arasýndaki kullanilari getir
+		for(Kullanici k :kullanicilar){
+		System.out.println("kullanici " +k.getUserName());
+		}
+		KullaniciDB.deleteUser(1231251252);
+
+
+		Kitap kt = new Kitap("!!!!!!!","incog","dav" ,1995,"asd","burak","url","urls");
+		kt.insertToDB();
+		ArrayList<Kitap> kitaplar = KitapDB.sayfaIleGetir(2);// 1. sayfa 50 ile 100 arasýndaki kullanilari getir
+		for(Kitap k :kitaplar){
+		System.out.println(k.getBookTitle());
+		}
+		
+		
+		
+		ArrayList<Kitap> yuksekOrt =KitapDB.yuksekOrtalama();
+		System.out.println("Yuksek ortalamali kitaplar");
+		System.out.println();
+		for(Kitap k:yuksekOrt) {
+			System.out.println(k.getBookTitle());
+		}
+		ArrayList<Kitap> cokOylanan =KitapDB.cokOylanan();
+		System.out.println();
+		System.out.println();
+		
+		
+		
+		
+		System.out.println("Cok oylanan kitaplar");
+		System.out.println();
+		for(Kitap k:cokOylanan) {
+			System.out.println(k.getBookTitle());
+		}
+		System.out.println();
+		System.out.println();
+		
+		
+		
+		
+		ArrayList<Kitap> sonEklenen =KitapDB.sonEklenen();
+		System.out.println("Son eklenen kitaplar");
+		System.out.println();
+		for(Kitap k:sonEklenen) {
+			System.out.println(k.getBookTitle() );
+		}
+		System.out.println();
+		System.out.println();
+		
+		
+		KitapDB.deleteBook("!!!!!!!");
+		
+		
+		
+		
+		
+		
+		
+		/*******************************TEST*************************************************/
+	}
 	
 	@Override
 	public void start(Stage primaryStage) {
-
+	
+	
+	/*******************************TEST*************************************************/
+	
+	
+	
 		this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Books");
 
@@ -99,41 +167,10 @@ public class Main extends Application {
 	
 
 	public static void main(String[] args) {
-		KitapDB kitapGetir = new KitapDB();
-		
-		
-		ArrayList<Kitap> yuksekOrt =kitapGetir.yuksekOrtalama();
-		System.out.println("Yuksek ortalamali kitaplar");
-		System.out.println();
-		for(Kitap k:yuksekOrt) {
-			System.out.println(k.getBookTitle());
-		}
-		ArrayList<Kitap> cokOylanan =kitapGetir.cokOylanan();
-		System.out.println();
-		System.out.println();
+		test();
 		
 		
 		
-		
-		System.out.println("Cok oylanan kitaplar");
-		System.out.println();
-		for(Kitap k:cokOylanan) {
-			System.out.println(k.getBookTitle());
-		}
-		System.out.println();
-		System.out.println();
-		
-		
-		
-		
-		ArrayList<Kitap> sonEklenen =kitapGetir.sonEklenen();
-		System.out.println("Son eklenen kitaplar");
-		System.out.println();
-		for(Kitap k:sonEklenen) {
-			System.out.println(k.getBookTitle() );
-		}
-		System.out.println();
-		System.out.println();
 		launch(args);
 
 	}

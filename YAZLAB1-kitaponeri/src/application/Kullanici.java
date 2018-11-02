@@ -40,7 +40,7 @@ public class Kullanici {
 			ResultSet rs =stmt.executeQuery(sql);
 			rs.next();
 			
-			return rs.getInt("cnt")<10 ?false : true;
+			return !(rs.getInt("cnt")<10) ;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -56,7 +56,7 @@ public class Kullanici {
 
 			stmt = conn.createStatement();
 			
-			String sql = "INSERT INTO bxusers ("+userId+", "+location+", "+age+","+password+","+userName+")";
+			String sql = "INSERT INTO bxusers values ("+userId+" , \""+location+"\" , \""+age+"\", \""+password+"\", \""+userName+"\")";
 			stmt.execute(sql);
 			return true;
 		} catch (Exception e) {

@@ -6,6 +6,8 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 
 public class Kitap {
+
+
 	private Connection conn = null;
 	private Statement stmt = null;
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
@@ -14,6 +16,7 @@ public class Kitap {
 	static final String USER = "root";
 	static final String PASS = "";
 
+	
 	public void insertToDB() {
 		try {
 			Class.forName(JDBC_DRIVER);
@@ -22,7 +25,8 @@ public class Kitap {
 
 			stmt = conn.createStatement();
 			
-			String sql = "INSERT INTO bxbooks ("+isbn+", "+bookTitle+", "+bookAuthor+","+yearOfPublication+","+publisher+", "+urlSmall+", "+urlMedium+" , "+urlLong+")";
+			String sql = "INSERT INTO bxbooks( ISBN ,BookTitle,BookAuthor ,YearOfPublication ,Publisher ,ImageUrlS,ImageUrlM,ImageUrlL) values (\""+isbn+"\", \""+bookTitle+"\", \""+bookAuthor+"\","+yearOfPublication+",\""+publisher+"\", \""+urlSmall+"\", \""+urlMedium+"\" , \""+urlLong+"\")";
+			//System.out.println(sql);
 			stmt.execute(sql);
 		} catch (Exception e) {
 			e.printStackTrace();

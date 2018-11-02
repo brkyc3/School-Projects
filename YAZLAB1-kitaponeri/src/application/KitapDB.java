@@ -9,15 +9,14 @@ import java.util.ArrayList;
 
 
 public class KitapDB {
-	private Connection conn = null;
-	private Statement stmt = null;
+
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	static final String DB_URL = "jdbc:mysql://localhost:3306/KitapOneri?useUnicode=true&useLegacyDatetimeCode=false&serverTimezone=Turkey";
 
 	static final String USER = "root";
 	static final String PASS = "";
  
-	private int sayfadakiKitapAdedi=50; 
+	private static int sayfadakiKitapAdedi=50; 
 	
 	public int getSayfadakiKitapAdedi() {
 		return sayfadakiKitapAdedi;
@@ -25,22 +24,8 @@ public class KitapDB {
 	public void setSayfadakiKitapAdedi(int sayfadakiKitapAdedi) {
 		this.sayfadakiKitapAdedi = sayfadakiKitapAdedi;
 	}
-	public KitapDB() {
 
-
-	
-		try {
-			Class.forName(JDBC_DRIVER);
-
-			conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
-			stmt = conn.createStatement();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
-	public ArrayList<Kitap> yuksekOrtalama(){
+	public static ArrayList<Kitap> yuksekOrtalama(){
 		ArrayList<Kitap> kitaplar =new ArrayList<>();
 		String sql = "SELECT * FROM bxbooks AS bk"
 				+ " inner join( "
@@ -53,6 +38,11 @@ public class KitapDB {
 				+ "ON rt.ISBN = bk.ISBN";
 		//10 DAN FAZLA OYLANAN KITAPLAR ICIN ORTALAMA HESAPLIYOR
 		try {
+			Class.forName(JDBC_DRIVER);
+
+			 Connection conn  = DriverManager.getConnection(DB_URL, USER, PASS);
+
+			 Statement stmt = conn.createStatement();
 			ResultSet rs =stmt.executeQuery(sql);
 			
 			while(rs.next()) {
@@ -69,7 +59,7 @@ public class KitapDB {
 						);
 			}
 			
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			
 			e.printStackTrace();
 		}
@@ -77,7 +67,7 @@ public class KitapDB {
 		
 		
 	}
-	public ArrayList<Kitap> cokOylanan(){
+	public static ArrayList<Kitap> cokOylanan(){
 		ArrayList<Kitap> kitaplar = new ArrayList<>();
 		String sql = "SELECT * FROM bxbooks AS bk "
 				+ "inner join("
@@ -88,6 +78,11 @@ public class KitapDB {
 				+ ") as rt "
 				+ "ON rt.ISBN = bk.ISBN ";
 		try {
+			Class.forName(JDBC_DRIVER);
+
+			 Connection conn  = DriverManager.getConnection(DB_URL, USER, PASS);
+
+			 Statement stmt = conn.createStatement();
 			ResultSet rs =stmt.executeQuery(sql);
 			
 			while(rs.next()) {
@@ -107,6 +102,9 @@ public class KitapDB {
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		
@@ -116,7 +114,7 @@ public class KitapDB {
 		
 	}
 	
-	public ArrayList<Kitap> sonEklenen(){
+	public static ArrayList<Kitap> sonEklenen(){
 		ArrayList<Kitap> kitaplar =new ArrayList<>();
 		String sql = "SELECT * FROM bxbooks "
 				+ "WHERE insertionDate > \"2018-11-02 18:04:44\" "
@@ -124,6 +122,11 @@ public class KitapDB {
 				+ "LIMIT 5";
 
 		try {
+			Class.forName(JDBC_DRIVER);
+
+			 Connection conn  = DriverManager.getConnection(DB_URL, USER, PASS);
+
+			 Statement stmt = conn.createStatement();
 			ResultSet rs =stmt.executeQuery(sql);
 			
 			while(rs.next()) {
@@ -142,19 +145,25 @@ public class KitapDB {
 			
 			}
 			
-		} catch (SQLException e) {
+		} catch (SQLException | ClassNotFoundException e) {
 			
 			e.printStackTrace();
 		}
 		return kitaplar;
 	}
 	
-	public ArrayList<Kitap> sayfaIleGetir(int ninciSayfa){
+	public static ArrayList<Kitap> sayfaIleGetir(int ninciSayfa){
 		ArrayList<Kitap> kitaplar =new ArrayList<>();
 		String sql = "SELECT * FROM bxbooks "
 				+ "LIMIT "+sayfadakiKitapAdedi*(ninciSayfa-1) +" , "+sayfadakiKitapAdedi*(ninciSayfa);
 
 		try {
+			Class.forName(JDBC_DRIVER);
+
+			 Connection conn  = DriverManager.getConnection(DB_URL, USER, PASS);
+
+			 Statement stmt = conn.createStatement();
+			
 			ResultSet rs =stmt.executeQuery(sql);
 			
 			while(rs.next()) {
@@ -173,25 +182,23 @@ public class KitapDB {
 			
 			}
 			
-		} catch (SQLException e) {
+		} catch (SQLException | ClassNotFoundException e) {
 			
 			e.printStackTrace();
 		}
 		return kitaplar;
 		
 	}
-	public void deleteBook(String isbn) {
+	public static void  deleteBook(String isbn) {
 		try {
 			Class.forName(JDBC_DRIVER);
 
 			 Connection conn  = DriverManager.getConnection(DB_URL, USER, PASS);
 
 			 Statement stmt = conn.createStatement();
-			 
-			// foreingkey oldugundan  oylari sil
-			 String sql = "DELETE FROM  bxbookratings WHERE ISBN = "+isbn;
+			 String sql = "DELETE FROM  bxbookratings WHERE ISBN = \""+isbn+"\"";
 			stmt.execute(sql);
-			sql = "DELETE FROM  bxbooks WHERE ISBN = "+isbn;
+			sql = "DELETE FROM  bxbooks WHERE ISBN = \""+isbn+"\"";
 			stmt.execute(sql);
 		} catch (Exception e) {
 			e.printStackTrace();
