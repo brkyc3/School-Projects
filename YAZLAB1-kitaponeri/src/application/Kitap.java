@@ -22,7 +22,7 @@ public class Kitap {
 
 			stmt = conn.createStatement();
 			
-			String sql = "INSERT INTO bxusers ("+isbn+", "+bookTitle+", "+bookAuthor+","+yearOfPublication+","+publisher+", "+urlSmall+", "+urlMedium+" , "+urlLong+")";
+			String sql = "INSERT INTO bxbooks ("+isbn+", "+bookTitle+", "+bookAuthor+","+yearOfPublication+","+publisher+", "+urlSmall+", "+urlMedium+" , "+urlLong+")";
 			stmt.execute(sql);
 		} catch (Exception e) {
 			e.printStackTrace();

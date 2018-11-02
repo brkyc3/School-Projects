@@ -8,12 +8,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class KullaniciDB {
-	private  static int sayfadakiKitapAdedi=50;
+	private  static int sayfadakiKullaniciAdedi=50;
 	public int getSayfadakiKitapAdedi() {
-		return sayfadakiKitapAdedi;
+		return sayfadakiKullaniciAdedi;
 	}
 	public void setSayfadakiKitapAdedi(int sayfadakiKitapAdedi) {
-		this.sayfadakiKitapAdedi = sayfadakiKitapAdedi;
+		this.sayfadakiKullaniciAdedi = sayfadakiKitapAdedi;
 	}
 
 
@@ -49,8 +49,8 @@ public class KullaniciDB {
 
 			 Statement stmt = conn.createStatement();
 			
-			 String sql = "SELECT * FROM bxbooks "
-						+ "LIMIT "+sayfadakiKitapAdedi*(ninciSayfa-1) +" , "+sayfadakiKitapAdedi*(ninciSayfa);
+			 String sql = "SELECT * FROM bxusers "
+						+ "LIMIT "+sayfadakiKullaniciAdedi*(ninciSayfa-1) +" , "+sayfadakiKullaniciAdedi*(ninciSayfa);
 			ResultSet rs =stmt.executeQuery(sql);
 			while(rs.next()) {
 				kullanicilar.add(
