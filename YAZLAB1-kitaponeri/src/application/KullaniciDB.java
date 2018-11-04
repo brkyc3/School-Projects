@@ -70,7 +70,31 @@ public class KullaniciDB {
 		return kullanicilar;
 	}
 
-	
+	public static Kullanici getKullanici(int userId) {
+		try {
+			Class.forName(JDBC_DRIVER);
+
+			 Connection conn  = DriverManager.getConnection(DB_URL, USER, PASS);
+
+			 Statement stmt = conn.createStatement();
+
+			 String sql = "SELECT * FROM bxusers "
+						+ "where userID = "+userId;
+			ResultSet rs =stmt.executeQuery(sql);
+			rs.next();
+				
+					return	new Kullanici(
+								rs.getInt("UserId"), 
+								rs.getString("location"),
+								rs.getInt("Age"),
+								"***", rs.getString("username")
+								);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 	
 }

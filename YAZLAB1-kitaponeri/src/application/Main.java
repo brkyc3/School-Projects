@@ -11,6 +11,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import application.view.LoginScreenController;
 import application.view.MainPageController;
@@ -45,8 +46,8 @@ public class Main extends Application {
 		System.out.println("kullanici " +k.getUserName());
 		}
 		
-
-
+	
+		
 		Kitap kt = new Kitap("!!!!!!!","incog","dav" ,1995,"asd","burak","url","urls");
 		kt.insertToDB();
 		ArrayList<Kitap> kitaplar = KitapDB.sayfaIleGetir(2);// 2. sayfa 50 ile 100 arasýndaki kullanilari getir
@@ -176,9 +177,9 @@ public class Main extends Application {
     
     }
     
-    public void showMainPage() {
+    public void showMainPage(Kullanici currentUser) {
     	try {	
-    		
+    		kk=currentUser;
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();           
             loader.setLocation(Main.class.getResource("view/MainPage.fxml"));           
@@ -188,7 +189,7 @@ public class Main extends Application {
             // Give the controller access to the main app.
             MainPageController controller = loader.getController();
             controller.setMain(this);
-            controller.setUser(kk);
+            controller.setUser(currentUser);
     		primaryStage.setHeight(800);
     		primaryStage.setWidth(1000);
         } catch (IOException e) {
@@ -230,7 +231,7 @@ public class Main extends Application {
 	}
 
 	
-	public static boolean Giris(String userName, String sifre) {
+	public static boolean Giris(String userID, String sifre) {
 		try {
 			Class.forName(JDBC_DRIVER);
 
@@ -238,15 +239,16 @@ public class Main extends Application {
 
 			Statement stmt = conn.createStatement();
 
-			String sql = "SELECT count(UserId) as cnt,b.UserName,b.sifre from bxusers as b where b.UserName = \""+userName +"\" and b.sifre = \""+sifre+"\"";
+			String sql = "SELECT count(UserId) as cnt,b.UserName,b.sifre from bxusers as b where b.UserID = \""+userID +"\" and b.sifre = \""+sifre+"\"";
 			ResultSet st = stmt.executeQuery(sql);
 			st.next();
-			return st.getInt("cnt") != 1;
+			
+			return st.getInt("cnt") == 1;
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		boolean kullaniciVarMi = true; 
+		boolean kullaniciVarMi = false; 
 		return kullaniciVarMi;
 	}
 

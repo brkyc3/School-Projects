@@ -5,6 +5,8 @@ import javafx.scene.control.TextField;
 import com.qoppa.pdf.PDFException;
 import com.qoppa.pdfViewerFX.PDFViewer;
 
+import application.Kullanici;
+import application.KullaniciDB;
 import application.Main;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -58,7 +60,8 @@ public class LoginScreenController {
 			boolean login = Main.Giris(IDText.getText(), sifreText.getText());		
 			if(login) {
 				//load main scene
-				main.showMainPage();
+				Kullanici currentUser = KullaniciDB.getKullanici(Integer.parseInt(IDText.getText()));
+				main.showMainPage(currentUser);
 			} else {
 				Alert alert = new Alert(AlertType.ERROR);
 	            //alert.initOwner(dialogStage);

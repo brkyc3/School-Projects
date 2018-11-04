@@ -162,6 +162,7 @@ public class MainPageController {
 	@FXML
 	private void handleForYou() {
 		liste.clear();
+		
 		boolean getir = user.yeterinceOyVerdimi();
 		if(!getir) {
 			Alert alert = new Alert(AlertType.ERROR);

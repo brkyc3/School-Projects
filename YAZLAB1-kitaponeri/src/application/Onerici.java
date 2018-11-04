@@ -66,13 +66,15 @@ public class Onerici {
 			while (rs.next()) {
 			int left =rs.getInt("b1.BookRating");
 			int right =rs.getInt("b2.BookRating");
-			System.out.println(left +" "+ right +"---");
+			
 			userDistance.put(rs.getLong("b1.userid"),userDistance.getOrDefault(rs.getLong("b1.userid"), 0.0) +Math.pow(left- right,2));
 				
 			
 				
 				
 			}
+			
+			
 			benzerler = new ArrayList<>(userDistance.entrySet());
 	        benzerler.sort(Entry.comparingByValue());
 
@@ -95,7 +97,7 @@ public class Onerici {
 
 
 	public HashSet<Kitap> kitapOner(int adet) {
-		
+		this.benzerleriBul();
 		List<Entry<Long, Double>> sub = benzerler;
 
 		HashSet<Kitap> kitaplar = new HashSet<Kitap>();
