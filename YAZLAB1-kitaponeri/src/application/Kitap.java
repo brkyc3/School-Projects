@@ -5,6 +5,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 public class Kitap {
 
 
@@ -56,11 +59,20 @@ public String getIsbn() {
 	public String getBookTitle() {
 		return bookTitle;
 	}
+	public StringProperty getTitleProperty() {
+		StringProperty s = new SimpleStringProperty((String) bookTitle);
+		return s;
+	}
 	public void setBookTitle(String bookTitle) {
 		this.bookTitle = bookTitle;
 	}
+	
 	public String getBookAuthor() {
 		return bookAuthor;
+	}
+	public StringProperty getAuthorProperty() {
+		StringProperty s = new SimpleStringProperty((String) bookAuthor);
+		return s;
 	}
 	public void setBookAuthor(String bookAuthor) {
 		this.bookAuthor = bookAuthor;

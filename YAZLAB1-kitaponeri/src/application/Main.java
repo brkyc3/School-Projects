@@ -1,6 +1,8 @@
 package application;
 
-	
+import com.qoppa.pdf.PDFException;
+import com.qoppa.pdfViewerFX.PDFViewer;	
+
 import java.io.File;
 import java.io.IOException;
 
@@ -30,8 +32,12 @@ public class Main extends Application {
 	
 	private Stage primaryStage;
 	private BorderPane rootLayout;
+
+	
+	static Kullanici kk = new Kullanici(1231251252, "sakarya", 23, "qwer123", "burak123");
+	
 	private static void test(){
-	Kullanici kk = new Kullanici(1231251252, "sakarya", 23, "qwer123", "burak123");
+	
 		kk.insertToDb();
 		
 		ArrayList<Kullanici> kullanicilar =KullaniciDB.sayfaIleGetir(1);// 1. sayfa 0 ile 50 arasýndaki kullanilari getir
@@ -110,18 +116,19 @@ public class Main extends Application {
         initRootLayout();
 
         showLoginScreen();  
-        
 
 	}
+
 
 	
     public void initRootLayout() {
         try {
             // Load root layout from fxml file.
+
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("view/RootLayout.fxml"));
-            rootLayout = (BorderPane) loader.load();
-            
+            rootLayout = (BorderPane) loader.load();          
+    		
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
@@ -133,13 +140,14 @@ public class Main extends Application {
     
     public void showLoginScreen() {
     	try {		
-            // Load person overview.
+
+
             FXMLLoader loader = new FXMLLoader();           
             loader.setLocation(Main.class.getResource("view/LoginScreen.fxml"));           
             AnchorPane loginScreen = (AnchorPane) loader.load();
-            // Set person overview into the center of root layout.
+
             rootLayout.setCenter(loginScreen);          
-            // Give the controller access to the main app.
+
             LoginScreenController controller = loader.getController();
             controller.setMain(this);
             
@@ -165,10 +173,12 @@ public class Main extends Application {
             e.printStackTrace();
         }
     
+    
     }
     
     public void showMainPage() {
-    	try {		
+    	try {	
+    		
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();           
             loader.setLocation(Main.class.getResource("view/MainPage.fxml"));           
@@ -177,16 +187,37 @@ public class Main extends Application {
             rootLayout.setCenter(mainPage);          
             // Give the controller access to the main app.
             MainPageController controller = loader.getController();
-            //controller.setMain(this);
-            
+            controller.setMain(this);
+            controller.setUser(kk);
+    		primaryStage.setHeight(800);
+    		primaryStage.setWidth(1000);
         } catch (IOException e) {
             e.printStackTrace();
         }
     
     }
     
+
+    public void readBook() {
+    	
+    	PDFViewer pdf = new PDFViewer();
+		
+		try {
+			pdf.loadPDF(Main.class.getResource("book.pdf"));
+		} catch (PDFException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		};
+		BorderPane borderPane = new BorderPane(pdf);
+    	Scene scene = new Scene(borderPane);
+    	Stage reader = new Stage();
+    	reader.setScene(scene);
+		reader.show();
+    }
    
-	
+	public void oyla(String _isbn, int puan) {
+		kk.oyVer(_isbn, puan);
+	}
 	
 
 	public static void main(String[] args) {

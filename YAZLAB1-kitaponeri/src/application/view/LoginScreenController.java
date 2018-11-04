@@ -79,7 +79,7 @@ public class LoginScreenController {
 	private boolean isInputValid() {
         String errorMessage = "";
 
-        if (IDText.getText() == null || IDText.getText().length() == 0) {
+        if (IDText.getText() == null) {
             errorMessage += "No valid ID!\n"; 
         }
         if (sifreText.getText() == null || sifreText.getText().length() == 0) {
