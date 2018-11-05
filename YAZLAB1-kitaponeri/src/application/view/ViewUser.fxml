@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.ViewUserController">
+   <children>
+      <SplitPane dividerPositions="0.5012531328320802" layoutX="300.0" layoutY="165.0" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <SplitPane dividerPositions="0.20791415157612342" layoutX="119.0" layoutY="162.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <ButtonBar layoutX="98.0" layoutY="61.0" prefHeight="40.0" prefWidth="200.0">
+                                <buttons>
+                                  <Button mnemonicParsing="false" onAction="#handleAdd" text="Ekle" />
+                                    <Button mnemonicParsing="false" onAction="#handleDelete" text="Sil" />
+                                </buttons>
+                              </ButtonBar>
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <SplitPane dividerPositions="0.07912745936698032" layoutX="118.0" layoutY="110.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <items>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                       <children>
+                                          <TextField fx:id="pageText" layoutX="160.0" layoutY="7.0" onAction="#handlePageInput" prefHeight="26.0" prefWidth="74.0" />
+                                          <Button layoutX="126.0" layoutY="8.0" mnemonicParsing="false" onAction="#handlePreviosPage" text="&lt;" />
+                                          <Button layoutX="241.0" layoutY="7.0" mnemonicParsing="false" onAction="#handleNextPage" text="&gt;" />
+                                       </children>
+                                    </AnchorPane>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                       <children>
+                                          <ListView fx:id="userListView" layoutX="97.0" layoutY="81.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                       </children>
+                                    </AnchorPane>
+                                </items>
+                              </SplitPane>
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <Label layoutX="48.0" layoutY="48.0" text="Kullanici ID:" />
+                  <Label layoutX="48.0" layoutY="73.0" text="Konum:" />
+                  <Label layoutX="48.0" layoutY="101.0" text="Yas:" />
+                  <Label layoutX="48.0" layoutY="127.0" text="Kullanici Adi:" />
+                  <Label fx:id="idLabel" layoutX="177.0" layoutY="48.0" text="Kullanici ID:" />
+                  <Label fx:id="konumLabel" layoutX="174.0" layoutY="73.0" text="Konum:" />
+                  <Label fx:id="yasLabel" layoutX="174.0" layoutY="101.0" text="Yas:" />
+                  <Label fx:id="userNameLabel" layoutX="174.0" layoutY="127.0" text="Kullanici Adi:" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

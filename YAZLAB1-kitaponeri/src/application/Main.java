@@ -13,9 +13,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+import application.view.AddBookController;
+import application.view.AddUserController;
 import application.view.LoginScreenController;
 import application.view.MainPageController;
 import application.view.SignUpController;
+import application.view.ViewUserController;
 import javafx.application.Application;
 import javafx.application.HostServices;
 import javafx.stage.Stage;
@@ -158,6 +161,26 @@ public class Main extends Application {
     
     }
     
+    public void showAddBook() {
+    	try {		
+
+            FXMLLoader loader = new FXMLLoader();           
+            loader.setLocation(Main.class.getResource("view/AddBook.fxml"));           
+            AnchorPane addBook = (AnchorPane) loader.load();
+
+            Scene scene = new Scene(addBook);
+        	Stage adder = new Stage();
+        	adder.setScene(scene);
+    		adder.show();        
+    		
+            AddBookController controller = loader.getController();
+            controller.setStage(adder);
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
     public void showSignUpScreen() {
     	try {		
             // Load person overview.
@@ -177,6 +200,44 @@ public class Main extends Application {
     
     }
     
+    public void showAdmin() {
+    	try {		
+            FXMLLoader loader = new FXMLLoader();           
+            loader.setLocation(Main.class.getResource("view/ViewUser.fxml"));           
+            AnchorPane viewUser = (AnchorPane) loader.load();
+
+            Scene scene = new Scene(viewUser);
+        	Stage adder = new Stage();
+        	adder.setScene(scene);
+    		adder.show();        
+    		
+            ViewUserController controller = loader.getController();
+            controller.setMain(this);
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void showAddUser() {
+    	try {		
+            FXMLLoader loader = new FXMLLoader();           
+            loader.setLocation(Main.class.getResource("view/AddUser.fxml"));           
+            AnchorPane addUser = (AnchorPane) loader.load();
+            
+            Scene scene = new Scene(addUser);
+        	Stage adder = new Stage();
+        	adder.setScene(scene);
+    		adder.show();        
+    		
+            AddUserController controller = loader.getController();
+            controller.setMain(this);
+            controller.setStage(adder);
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void showMainPage(Kullanici currentUser) {
     	try {	
     		kk=currentUser;

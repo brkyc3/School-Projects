@@ -1,15 +1,16 @@
 package application.view;
 
-import javafx.scene.control.TextField;
-
 import application.Kullanici;
 import application.Main;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import javafx.scene.control.Alert.AlertType;
 
-public class SignUpController {
- 
+public class AddUserController {
+
 	@FXML
 	private TextField IDText;
 	
@@ -25,28 +26,37 @@ public class SignUpController {
 	private TextField kullaniciAdiText;
 	
 	private Main main;
+	private Stage myStage;
 	
-	public SignUpController() {}
-	
-	@FXML 
-	private void initialize() {
+	public AddUserController() {
 		
 	}
 	
+	public void setMain(Main _main) {
+		this.main = _main;
+	}
+	
+	public void setStage(Stage _myStage) {
+		myStage = _myStage;
+	}
+	
+	public AddUserController getController() {
+		return this;
+	}
+	
+	@FXML private void initialize() {}
+	
 	@FXML
-	private void handleSignUp() {
+	private void handleAddUser() {
 		if(isInputValid()) {
-			boolean login = Main.Giris(IDText.getText(), sifreText.getText());		
-			if(!login) {
-				System.out.println("girdi");
-				//load main scene
+			
 				Kullanici kk = new Kullanici(Integer.parseInt(IDText.getText()),
 						konumText.getText(), Integer.parseInt(yasText.getText()), 
 						sifreText.getText(), kullaniciAdiText.getText());
 				
 				if(kk.insertToDb()) 
 				{
-					main.showLoginScreen();
+					myStage.close();
 				}
 				else 
 				{
@@ -67,12 +77,7 @@ public class SignUpController {
 	            //alert.setContentText(errorMessage);
 	            alert.showAndWait();
 			}
-		}
-	}
-	
-	@FXML
-	private void handleCancel() {
-		main.showLoginScreen();
+		
 	}
 	
 	private boolean isInputValid() {
@@ -118,8 +123,16 @@ public class SignUpController {
         }
     }
 	
-	public void setMain(Main _main) {
-		this.main = _main;
+	@FXML
+	private void handleCancel() {
+		myStage.close();
 	}
 	
 }
+
+
+
+
+
+
+
