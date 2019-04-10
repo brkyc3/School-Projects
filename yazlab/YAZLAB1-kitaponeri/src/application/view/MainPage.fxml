@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.MainPageController">
+   <children>
+      <SplitPane dividerPositions="0.5388471177944862" layoutX="197.0" layoutY="159.0" prefHeight="187.0" prefWidth="316.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="598.0" prefWidth="259.0">
+               <children>
+                  <SplitPane dividerPositions="0.19630872483221476" orientation="VERTICAL" prefHeight="598.0" prefWidth="427.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <Label layoutX="31.0" layoutY="26.0" text="Hoş Geldiniz" />
+                              <Label fx:id="userNameLabel" layoutX="31.0" layoutY="43.0" text="Kullanıcı Adı" />
+                              <Button fx:id="adminButton" layoutX="289.0" layoutY="39.0" mnemonicParsing="false" onAction="#handleAdmin" text="Kullanicilari Düzenle" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="14.200000000000045" />
+                              <ButtonBar fx:id="adminBar" layoutX="145.0" layoutY="65.0" prefHeight="40.0" prefWidth="266.0" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="15.0">
+                                <buttons>
+                                  <Button fx:id="adminDelete" mnemonicParsing="false" onAction="#handleAdminDelete" text="Kitap Sil" />
+                                    <Button fx:id="adminAdd" mnemonicParsing="false" onAction="#handleAdminAdd" text="Kitap Ekle" />
+                                </buttons>
+                              </ButtonBar>
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <SplitPane dividerPositions="0.16006739679865206" orientation="VERTICAL" prefHeight="477.0" prefWidth="426.0" AnchorPane.bottomAnchor="-0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <items>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="66.0" prefWidth="424.0">
+                                       <children>
+                                          <TabPane prefHeight="75.0" prefWidth="424.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <tabs>
+                                              <Tab text="Öneriler">
+                                                <content>
+                                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="213.0" prefWidth="424.0">
+                                                         <children>
+                                                            <ButtonBar layoutX="45.0" layoutY="3.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="333.0" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="46.0" AnchorPane.topAnchor="3.0">
+                                                              <buttons>
+                                                                <Button mnemonicParsing="false" onAction="#handleBest" text="En İyi" />
+                                                                  <Button mnemonicParsing="false" onAction="#handlePop" text="En Popüler" />
+                                                                  <Button mnemonicParsing="false" onAction="#handleNew" text="Yeniler" />
+                                                                  <Button mnemonicParsing="false" onAction="#handleForYou" text="Sana Özel" />
+                                                              </buttons>
+                                                            </ButtonBar>
+                                                         </children>
+                                                      </AnchorPane>
+                                                </content>
+                                              </Tab>
+                                              <Tab text="Tüm Kitaplar">
+                                                <content>
+                                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="192.0" prefWidth="424.0">
+                                                         <children>
+                                                            <TextField fx:id="pageText" alignment="CENTER" layoutX="178.0" layoutY="14.0" onAction="#handlePageInput" prefHeight="26.0" prefWidth="67.0" text="0" AnchorPane.topAnchor="10.0" />
+                                                            <Button layoutX="260.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleNextPage" prefHeight="26.0" prefWidth="26.0" text="&gt;" AnchorPane.topAnchor="10.0" />
+                                                            <Button layoutX="132.0" layoutY="14.0" mnemonicParsing="false" onAction="#handlePreviosPage" prefHeight="26.0" prefWidth="26.0" text="&lt;" AnchorPane.topAnchor="10.0" />
+                                                         </children>
+                                                      </AnchorPane>
+                                                </content>
+                                              </Tab>
+                                            </tabs>
+                                          </TabPane>
+                                       </children>
+                                    </AnchorPane>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="284.0" prefWidth="424.0">
+                                       <children>
+                                          <ListView fx:id="kitapListBest" prefHeight="265.0" prefWidth="290.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                       </children>
+                                    </AnchorPane>
+                                </items>
+                              </SplitPane>
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children></AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="598.0" prefWidth="213.0">
+               <children>
+                  <Label fx:id="showBookTitle" layoutX="183.0" layoutY="32.0" text="Kıtap Adı" />
+                  <Label fx:id="showBookAuthor" layoutX="183.0" layoutY="59.0" text="Yazar" />
+                  <Label fx:id="showBookYear" layoutX="183.0" layoutY="90.0" text="Yıl" />
+                  <Label fx:id="showBookPublisher" layoutX="183.0" layoutY="120.0" text="Yayınevi" />
+                  <Label fx:id="showBookISBN" layoutX="183.0" layoutY="147.0" text="ISBN" />
+                  <Button layoutX="284.0" layoutY="223.0" mnemonicParsing="false" onAction="#handleRead" text="Oku" />
+                  <ImageView fx:id="showBookCover" fitHeight="214.0" fitWidth="150.0" layoutX="14.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="387.18182373046875" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="201.0" AnchorPane.topAnchor="29.0" />
+                  <Slider fx:id="slider" blockIncrement="1.0" layoutX="183.0" layoutY="173.0" majorTickUnit="1.0" max="10.0" minorTickCount="0" onMouseReleased="#handleSlider" showTickLabels="true" snapToTicks="true" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
