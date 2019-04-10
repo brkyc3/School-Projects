@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1514991406 source:/home/brk/Documents/codeblocks/deneme/lab/main.c
+	<stdio.h>
+	<stdlib.h>
+

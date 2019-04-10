@@ -1,0 +1,1 @@
+"../prolab/Debug/lcd.obj" "../prolab/Debug/main.obj" "../prolab/Debug/startup_ccs.obj" "../prolab/Debug/utils/uartstdio.obj" "./prolab/lcd.obj" "./prolab/main.obj" "./prolab/startup_ccs.obj" "../prolab/prolabproje3_ccs.cmd" -llibc.a -l"/home/brk/ti/TivaWare_C_Series-2.1.3.156/driverlib/ccs/Debug/driverlib.lib" 
